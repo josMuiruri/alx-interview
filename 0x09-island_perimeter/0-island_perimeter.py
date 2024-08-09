@@ -1,5 +1,16 @@
 #!/usr/bin/python3
-def island_perimeter(grid):
+from typing import List
+
+def island_perimeter(grid: List[List[int]]) -> int:
+    
+    """
+    Calculate the perimeter of island described grid
+    Parameters:
+    grid (List[List[int]])
+
+    Returns:
+    int: The perimeter of the island
+    """
     if not grid or not grid[0]:
         return 0
 
