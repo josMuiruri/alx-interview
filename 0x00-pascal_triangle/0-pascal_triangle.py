@@ -2,9 +2,9 @@
 '''a function that returns a list of lists of integers
 representing the Pascal's triangle'''
 def pascal_triangle(n: int) -> list:
-    # assigning an empty list
+    ''' assigning an empty list '''
     triangle = []
-    # less than/equal to 0 return an empty list
+    ''' less than/equal to 0 return an empty list '''
     if n <= 0:
         return triangle
     # looping i = rows
