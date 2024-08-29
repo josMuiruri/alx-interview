@@ -14,10 +14,10 @@ def pascal_triangle(n: int) -> list:
         pasc = []
         # looping m = columns
         for m in range(i + 1):
-            if m  == 0 or m == i:
+            if m == 0 or m == i:
                 pasc.append(1)
             else:
-                pasc.append(triangle[i - 1][m -1] + triangle[i - 1][m])
+                pasc.append(triangle[i - 1][m - 1] + triangle[i - 1][m])
         triangle.append(pasc)
     return triangle
 # print(pascal_triangle(5))
