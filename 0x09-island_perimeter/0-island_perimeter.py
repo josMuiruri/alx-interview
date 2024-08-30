@@ -4,8 +4,7 @@
 
 
 def island_perimeter(grid: list[list[int]]) -> int:
-    """
-    Calculate the perimeter of island
+    """Calculate the perimeter of island
 
     Parameters:
     grid (List[List[int]]): 2D list representing the map where 0 is water and 1 is land
