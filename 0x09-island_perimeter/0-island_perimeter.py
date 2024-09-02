@@ -12,12 +12,12 @@ def island_perimeter(grid: list[list[int]]) -> int:
     Returns:
     int: The perimeter of the island
     """
+    perimeter = 0
     if not grid or not grid[0]:
         return 0
 
     rows = len(grid)
     cols = len(grid[0])
-    perimeter = 0
 
     for r in range(rows):
         for c in range(cols):
