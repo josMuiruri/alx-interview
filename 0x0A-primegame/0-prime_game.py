@@ -17,6 +17,8 @@ def sieve_of_eratosthenes(max_n):
 
 
 def isWinner(x, nums):
+    '''Determines the winner
+    '''
     if not nums or x < 1:
         return None
 
