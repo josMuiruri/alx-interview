@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+'''Prime game
+'''
+
 
 def sieve_of_eratosthenes(max_n):
     """Generates prime numbers up to max_n using the Sieve of Eratosthenes."""
@@ -12,10 +15,11 @@ def sieve_of_eratosthenes(max_n):
         p += 1
     return [p for p in range(max_n + 1) if primes[p]]
 
+
 def isWinner(x, nums):
     if not nums or x < 1:
         return None
-    
+
     max_n = max(nums)
     primes = sieve_of_eratosthenes(max_n)
     maria_wins = 0
@@ -32,15 +36,18 @@ def isWinner(x, nums):
                 primes_count += 1
                 for multiple in range(prime, n + 1, prime):
                     multiples_removed[multiple] = True
-        
+
         if primes_count % 2 == 0:
             ben_wins += 1
         else:
             maria_wins += 1
-    
+
     if maria_wins > ben_wins:
         return "Maria"
     elif ben_wins > maria_wins:
         return "Ben"
     else:
-        return None                                                                                                                                                                                                                                                                                                                                                       
+        return None
+
+
+print("Winner: {}".format(isWinner(5, [2, 5, 1, 4, 3])))
