@@ -1,55 +1,52 @@
 #!/usr/bin/python3
-'''Prime game
-'''
 
-
-def sieve_of_eratosthenes(max_n):
-    """Generates prime numbers up to max_n using the Sieve of Eratosthenes."""
-    primes = [True] * (max_n + 1)
-    primes[0], primes[1] = False, False  # 0 and 1 are not primes
-    p = 2
-    while p * p <= max_n:
-        if primes[p]:
-            for i in range(p * p, max_n + 1, p):
-                primes[i] = False
-        p += 1
-    return [p for p in range(max_n + 1) if primes[p]]
+"""
+Prime Game Problem
+==================
+Ben and Maria are playing a game. The game consists of several rounds.
+- In each round, the players receive a list of integers.
+- The players must remove some elements from the list so that the sum of the
+    remaining elements is a prime number.
+-The player who cannot make a move loses the game.
+"""
 
 
 def isWinner(x, nums):
-    '''Determines the winner
-    '''
-    if not nums or x < 1:
+    """
+    Function to determine the winner of the game based on the number of rounds
+    and the list of integers
+
+    Parameters
+        x: an integer
+        nums: a list of integers
+
+    Returns
+        string: the winner of the game
+    """
+
+    if x < 1 or not nums:
         return None
 
-    max_n = max(nums)
-    primes = sieve_of_eratosthenes(max_n)
-    maria_wins = 0
-    ben_wins = 0
+    maria_chances = 0
+    ben_chances = 0
+
+    n = max(nums)
+    primes = [True] * (n + 1)
+    primes[0] = primes[1] = False
+
+    for i in range(2, int(n ** 0.5) + 1):
+        if primes[i]:
+            for j in range(i * i, n + 1, i):
+                primes[j] = False
 
     for n in nums:
-        primes_count = 0
-        multiples_removed = [False] * (n + 1)
-
-        for prime in primes:
-            if prime > n:
-                break
-            if not multiples_removed[prime]:
-                primes_count += 1
-                for multiple in range(prime, n + 1, prime):
-                    multiples_removed[multiple] = True
-
-        if primes_count % 2 == 0:
-            ben_wins += 1
+        count = sum(primes[2:n + 1])
+        if count % 2 == 0:
+            ben_chances += 1
         else:
-            maria_wins += 1
+            maria_chances += 1
 
-    if maria_wins > ben_wins:
-        return "Maria"
-    elif ben_wins > maria_wins:
-        return "Ben"
-    else:
+    if maria_chances == ben_chances:
         return None
 
-
-print("Winner: {}".format(isWinner(5, [2, 5, 1, 4, 3])))
+    return "Maria" if maria_chances > ben_chances else "Ben"
