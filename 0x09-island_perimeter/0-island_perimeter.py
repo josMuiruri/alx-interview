@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 '''Island perimeter computing module
 '''
 
@@ -13,31 +14,14 @@ def island_perimeter(grid: list[list[int]]) -> int:
     int: The perimeter of the island
     """
     perimeter = 0
-    if not grid or not grid[0]:
-        return 0
-
-    rows = len(grid)
-    cols = len(grid[0])
-
-    for r in range(rows):
-        for c in range(cols):
-            if grid[r][c] == 1:
-                ''' check top
-                '''
-                if r == 0 or grid[r - 1][c] == 0:
-                    perimeter += 1
-                ''' check bottom
-                '''
-                if r == rows - 1 or grid[r + 1][c] == 0:
-                    perimeter += 1
-                ''' check left
-                '''
-                if c == 0 or grid[r][c - 1] == 0:
-                    perimeter += 1
-                ''' check right
-                '''
-                if c == cols - 1 or grid[r][c + 1] == 0:
-                    perimeter += 1
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            if grid[i][j] == 1:
+                perimeter += 4
+                if i > 0 and grid[i - 1][j] == 1:
+                    perimeter -= 2
+                if j > 0 and grid[i][j - 1] == 1:
+                    perimeter -= 2
     return perimeter
 
 
